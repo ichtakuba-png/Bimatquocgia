@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNKNOWN // ACCESS</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:#030509;color:#00f7ff;
+  font-family:Consolas,monospace;display:flex;align-items:center;
+  justify-content:center;overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:linear-gradient(transparent 50%,#00ffff08 50%);
+  background-size:100% 4px;
+}
+.glow{
+  position:fixed;width:280px;height:280px;border-radius:50%;
+  background:#004cff18;filter:blur(70px);pointer-events:none;
+}
+.panel{
+  position:relative;width:90%;max-width:430px;padding:30px 24px;
+  border:1px solid #00f7ff55;border-radius:15px;
+  background:rgba(5,12,23,.94);
+  box-shadow:0 0 35px #00eaff12,inset 0 0 25px #00eaff08;
+  text-align:center;
+}
+.symbol{font-size:50px;text-shadow:0 0 22px #00f7ff}
+h1{font-size:23px;letter-spacing:5px;margin:15px 0 8px}
+.sub{color:#7199a7;font-size:11px;letter-spacing:2px}
+.line{height:1px;background:#00f7ff44;margin:23px 0}
+.status{font-size:11px;color:#ff405b;margin-bottom:20px}
+input{
+  width:100%;padding:15px;background:#02070d;border:1px solid #075b72;
+  border-radius:7px;color:#00f7ff;font-size:16px;text-align:center;
+  outline:none;letter-spacing:3px;
+}
+input:focus{border-color:#00f7ff;box-shadow:0 0 15px #00f7ff22}
+button{
+  width:100%;margin-top:14px;padding:14px;border:1px solid #00f7ff;
+  border-radius:7px;background:#00eaff12;color:#00f7ff;
+  font-weight:bold;letter-spacing:3px;cursor:pointer;
+}
+button:active{background:#00f7ff33}
+#message{font-size:12px;min-height:18px;margin-top:15px;color:#ff5369}
+#secret{display:none}
+.video{
+  width:100%;aspect-ratio:9/16;border:1px solid #00f7ff55;
+  border-radius:9px;overflow:hidden;background:#000;
+}
+.video iframe{width:100%;height:100%;border:0}
+.link{display:block;color:#00f7ff;font-size:12px;margin-top:15px}
+.footer{font-size:10px;color:#486b78;margin-top:25px}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<main class="panel">
+  <section id="login">
+    <div class="symbol">◈</div>
+    <h1>UNKNOWN</h1>
+    <div class="sub">CLASSIFIED SYSTEM // 001</div>
+    <div class="line"></div>
+    <div class="status">● ACCESS RESTRICTED</div>
+
+    <form id="form">
+      <input id="password" type="password"
+        placeholder="ENTER ACCESS KEY"
+        autocomplete="off" required>
+      <button type="submit">UNLOCK SYSTEM</button>
+    </form>
+
+    <div id="message"></div>
+    <div class="footer">AUTHORIZED PERSONNEL ONLY</div>
+  </section>
+
+  <section id="secret">
+    <div class="symbol">◉</div>
+    <h1>ACCESS GRANTED</h1>
+    <div class="sub">SECRET CONTENT UNLOCKED</div>
+    <div class="line"></div>
+
+    <div class="video">
+      <iframe id="player"
+        title="Secret TikTok video"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <a class="link"
+       href="https://vt.tiktok.com/ZSgs7mtHd/"
+       target="_blank" rel="noopener noreferrer">
+       OPEN VIDEO ON TIKTOK ↗
+    </a>
+    <div class="footer">CONNECTION ESTABLISHED // 100%</div>
+  </section>
+</main>
+
+<script>
+const form = document.getElementById('form');
+const password = document.getElementById('password');
+const message = document.getElementById('message');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  if (password.value === 'kiet2011') {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('secret').style.display = 'block';
+
+    // TikTok short links may not work inside an iframe.
+    // The link below remains available if embedding is blocked.
+    document.getElementById('player').src =
+      'https://www.tiktok.com/embed/v2/ZSgs7mtHd';
+  } else {
+    message.textContent = '⚠ ACCESS DENIED — INVALID KEY';
+    password.value = '';
+    password.focus();
+  }
+});
+</script>
+</body>
+</html>
